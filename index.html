@@ -1270,7 +1270,7 @@
       }
     }
 
-    function openSubmitModal() {
+function openSubmitModal() {
       const answeredCount = questions.filter(q =>
         Array.isArray(userAnswers[q.id]) ? userAnswers[q.id].length > 0 : Boolean(userAnswers[q.id])
       ).length;
@@ -1281,13 +1281,16 @@
         : `Selamat! Anda telah menjawab seluruh <strong>${questions.length} soal</strong>. Kirim jawaban sekarang untuk melihat hasil nilai?`;
 
       document.getElementById('modal-submit-desc').innerHTML = desc;
-      document.getElementById('modal-submit').classList.remove('hidden');
+      const modal = document.getElementById('modal-submit');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
     }
 
     function closeSubmitModal() {
-      document.getElementById('modal-submit').classList.add('hidden');
+      const modal = document.getElementById('modal-submit');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
     }
-
     async function submitExamNow(forcedByCheat) {
       if (isSubmitting) return;
       isSubmitting = true;
